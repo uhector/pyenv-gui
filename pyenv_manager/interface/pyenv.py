@@ -3,7 +3,7 @@
 import subprocess
 import os
 
-import helpers
+from . import helpers
 
 class PyenvInterface:
 
