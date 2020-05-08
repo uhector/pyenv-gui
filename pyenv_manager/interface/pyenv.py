@@ -10,7 +10,7 @@ class PyenvInterface:
     def __init__(self):
         self.root_dir = self._get_root_dir()
         self.versions_dir = os.path.join(self.root_dir, 'versions')
-        self.installed_versions = _get_installed_versions()
+        self.installed_versions = self._get_installed_versions()
 
     def __new__(cls):
         is_installed = subprocess.run('pyenv',
