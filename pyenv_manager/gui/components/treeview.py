@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
+
 import tkinter as tk
 from tkinter import ttk
+
+from .. import pyenv_interface
 
 class Treeview(ttk.Treeview):
 
@@ -9,3 +12,15 @@ class Treeview(ttk.Treeview):
         super().__init__(*args, **kwargs)
 
         self.heading('#0', text='Installed versions')
+
+
+    def update(self):
+        children = self.get_children()
+        if children:
+            for child in children:
+                self.delete(child)
+
+        for version in pyenv_interface.get_installed_versions():
+            if version == pyenv_interface.get_global_version():
+                version += '*'
+            self.insert('', 0, text=version)
