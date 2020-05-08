@@ -10,7 +10,6 @@ class PyenvInterface:
     def __init__(self):
         self.root_dir = self._get_root_dir()
         self.versions_dir = os.path.join(self.root_dir, 'versions')
-        self.installed_versions = self._get_installed_versions()
 
     def __new__(cls):
         is_installed = subprocess.run('pyenv',
@@ -23,7 +22,7 @@ class PyenvInterface:
             return object.__new__(cls)
 
 
-    def _get_installed_versions(self):
+    def get_installed_versions(self):
         ps = subprocess.Popen(['ls', '-l',
                               self.versions_dir],
                               stdout=subprocess.PIPE)
@@ -33,6 +32,17 @@ class PyenvInterface:
                                       text=True)
 
         return ['system'] + helpers.parse_ls_output(output)
+
+    def get_global_version(self):
+        with open(f'{self.root_dir}/version', 'r') as file:
+            lines = []
+            for line in file:
+                lines.append(line[:-1])
+
+        if len(lines) != 0:
+            return lines[0]
+        else:
+            return 'system'
 
     def _get_root_dir(self):
         root_dir = subprocess.run('pyenv root',
