@@ -37,12 +37,16 @@ class PyenvInterface:
         with open(f'{self.root_dir}/version', 'r') as file:
             lines = []
             for line in file:
-                lines.append(line[:-1])
+                lines.append(line)
 
         if len(lines) != 0:
             return lines[0]
         else:
             return 'system'
+
+    def set_global_version(self, version):
+        with open(f'{self.root_dir}/version', 'w') as file:
+            file.write(version)
 
     def _get_root_dir(self):
         root_dir = subprocess.run('pyenv root',
