@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from .notebook import Notebook
+from .components.notebook import Notebook
 
 class MainFrame(ttk.Frame):
 
