@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from .components.notebook import Notebook
+from ..components.notebook import Notebook
 
 class MainFrame(ttk.Frame):
 
@@ -11,6 +11,4 @@ class MainFrame(ttk.Frame):
         super().__init__(parent)
 
         self.notebook = Notebook(self)
-
-        parent.title("Pyenv Manager")
         self.pack()

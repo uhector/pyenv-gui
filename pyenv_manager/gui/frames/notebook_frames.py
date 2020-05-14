@@ -3,9 +3,9 @@
 import tkinter as tk
 from tkinter import ttk
 
-from .components.treeview import Treeview
+from ..components.treeview import Treeview
 
-from . import pyenv_interface
+from .. import pyenv_interface
 
 class VersionManagementFrame(ttk.Frame):
 

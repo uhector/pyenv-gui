@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from ..notebook_frames import VersionManagementFrame
+from ..frames.notebook_frames import VersionManagementFrame
 
 class Notebook(ttk.Notebook):
 
