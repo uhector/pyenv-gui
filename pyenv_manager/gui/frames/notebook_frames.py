@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import tkinter as tk
 from tkinter import ttk
 
 from ..components.treeview import Treeview
