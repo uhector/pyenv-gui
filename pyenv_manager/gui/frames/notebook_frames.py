@@ -3,6 +3,7 @@
 from tkinter import ttk
 
 from ..components.treeview import Treeview
+from ..installation_window import InstallationWindow
 
 from .. import pyenv_interface
 
@@ -18,7 +19,8 @@ class VersionManagementFrame(ttk.Frame):
         ttk.Button(self, text='Set as global',
                    command=self._set_as_global).grid(column=0, row=1)
 
-        ttk.Button(self, text='Install version').grid(column=1, row=1)
+        ttk.Button(self, text='Install version',
+                   command=InstallationWindow).grid(column=1, row=1)
 
         self.pack()
 
