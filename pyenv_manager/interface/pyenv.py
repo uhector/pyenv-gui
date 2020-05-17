@@ -12,14 +12,14 @@ class PyenvInterface:
         self.versions_dir = os.path.join(self.root_dir, 'versions')
 
     def __new__(cls):
-        is_installed = subprocess.run('pyenv',
+        is_installed = subprocess.run('pyenv --version',
                                       capture_output=True,
                                       shell=True)
 
-        if is_installed.returncode > 1:
-            return None
-        else:
+        if is_installed.returncode == 0:
             return object.__new__(cls)
+        else:
+            return None
 
 
     def get_installed_versions(self):
