@@ -22,6 +22,12 @@ class PyenvInterface:
             return None
 
 
+    def install_version(self, path, version):
+        '''This method only should be called in a different thread'''
+        with open(path, 'w') as file:
+            subprocess.run(['pyenv', 'install', version, '--verbose'],
+                            stdout=file, text=True)
+
     def get_installed_versions(self):
         ps = subprocess.Popen(['ls', '-l',
                               self.versions_dir],
