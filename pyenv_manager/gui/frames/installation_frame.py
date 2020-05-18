@@ -3,6 +3,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from ..components.combobox import Combobox
+
 class InstallationFrame(ttk.Frame):
 
     def __init__(self, parent):
@@ -10,8 +12,7 @@ class InstallationFrame(ttk.Frame):
 
         tk.Label(self, text='Select a version').pack()
 
-        self.versions_combo = ttk.Combobox(self, state="readonly")
-        self.versions_combo.pack()
+        self.versions_combo = Combobox(self, state="readonly")
 
         ttk.Button(self, text='Install').pack()
 
