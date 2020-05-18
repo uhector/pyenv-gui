@@ -28,6 +28,15 @@ class PyenvInterface:
             subprocess.run(['pyenv', 'install', version, '--verbose'],
                             stdout=file, text=True)
 
+    def get_avalible_versions(self):
+        '''Returns a list of CPython avalible versions to install'''
+        ps = subprocess.run('pyenv install --list',
+                            capture_output=True, shell=True)
+
+        output = ps.stdout.decode()
+
+        return helpers.parse_output(output)
+
     def get_installed_versions(self):
         ps = subprocess.Popen(['ls', '-l',
                               self.versions_dir],
