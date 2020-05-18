@@ -9,4 +9,9 @@ class Combobox(ttk.Combobox):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.add_values()
         self.pack()
+
+
+    def add_values(self):
+        self['values'] = pyenv_interface.get_avalible_versions()
