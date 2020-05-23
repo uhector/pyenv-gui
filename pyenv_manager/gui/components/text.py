@@ -10,3 +10,6 @@ class Text(tk.Text):
 
     def insert_text(self, text):
         self.insert(tk.INSERT, text)
+
+    def clean(self):
+        self.delete(1.0, tk.END)
