@@ -13,3 +13,6 @@ class Text(tk.Text):
 
     def clean(self):
         self.delete(1.0, tk.END)
+
+    def scroll_down(self):
+        self.see(tk.END)
