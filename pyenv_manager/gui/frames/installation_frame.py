@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from ..components.combobox import Combobox
+from ..components.text import Text
 
 class InstallationFrame(ttk.Frame):
 
@@ -16,8 +17,8 @@ class InstallationFrame(ttk.Frame):
 
         ttk.Button(self, text='Install').pack()
 
-        self.terminal_output = tk.Text(self, height=10, width=50,
-                                       state='disable')
+        self.terminal_output = Text(self, height=10, width=50,
+                                    state='disable')
         self.terminal_output.pack()
 
         self.pack()
