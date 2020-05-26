@@ -19,9 +19,8 @@ class PyenvInterface:
         if it's not installed, return None.
         '''
 
-        check_pyenv = subprocess.run('pyenv --version',
-                                      capture_output=True,
-                                      shell=True)
+        check_pyenv = subprocess.run(['pyenv', '--version'],
+                                     capture_output=True)
 
         if check_pyenv.returncode == 0:
             return object.__new__(cls)
