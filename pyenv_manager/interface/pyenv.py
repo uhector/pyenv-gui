@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import subprocess
 import os
+import subprocess
 
 from . import helpers
 
@@ -13,11 +13,17 @@ class PyenvInterface:
         self.installing_version = False
 
     def __new__(cls):
-        is_installed = subprocess.run('pyenv --version',
+        '''Check if pyenv is installed
+        
+        If it's installed, return a PyenvInterface object,
+        if it's not installed, return None.
+        '''
+
+        check_pyenv = subprocess.run('pyenv --version',
                                       capture_output=True,
                                       shell=True)
 
-        if is_installed.returncode == 0:
+        if check_pyenv.returncode == 0:
             return object.__new__(cls)
         else:
             return None
