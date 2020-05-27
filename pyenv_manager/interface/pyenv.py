@@ -28,6 +28,13 @@ class PyenvInterface:
         else:
             return None
 
+    @classmethod
+    def switch_state(cls):
+        if cls.state:
+            cls.state = False
+        else:
+            cls.state = True
+
     def install_version(self, version):
         '''This method only should be called in a different thread'''
         with open('logs.txt', 'w') as file:
