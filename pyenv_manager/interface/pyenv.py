@@ -7,10 +7,11 @@ from . import helpers
 
 class PyenvInterface:
 
+    state = False
+
     def __init__(self):
         self.root_dir = self._get_root_dir()
         self.versions_dir = os.path.join(self.root_dir, 'versions')
-        self.installing_version = False
 
     def __new__(cls):
         '''Check if pyenv is installed
@@ -27,15 +28,11 @@ class PyenvInterface:
         else:
             return None
 
-
     def install_version(self, version):
         '''This method only should be called in a different thread'''
-        self.installing_version = True
         with open('logs.txt', 'w') as file:
             subprocess.run(['pyenv', 'install', version, '--verbose'],
                             stdout=file, text=True)
-        
-        self.installing_version = False
 
     def get_avalible_versions(self):
         '''Returns a list of CPython avalible versions to install'''
