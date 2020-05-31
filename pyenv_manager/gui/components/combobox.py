@@ -14,4 +14,4 @@ class Combobox(ttk.Combobox):
 
 
     def add_values(self):
-        self['values'] = pyenv_interface.avalible_versions
+        self['values'] = pyenv_interface.available_versions

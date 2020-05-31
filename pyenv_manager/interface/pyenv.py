@@ -41,7 +41,7 @@ class PyenvInterface:
         return ['system'] + helpers.parse_ls_output(output)
 
     @property
-    def avalible_versions(self):
+    def available_versions(self):
         ps = subprocess.run('pyenv install --list',
                             capture_output=True, shell=True)
 
