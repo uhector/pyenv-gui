@@ -40,6 +40,15 @@ class PyenvInterface:
 
         return ['system'] + helpers.parse_ls_output(output)
 
+    @property
+    def avalible_versions(self):
+        ps = subprocess.run('pyenv install --list',
+                            capture_output=True, shell=True)
+
+        output = ps.stdout.decode()
+
+        return helpers.parse_output(output)
+
     @classmethod
     def switch_state(cls):
         if cls.state:
@@ -52,16 +61,6 @@ class PyenvInterface:
         with open('logs.txt', 'w') as file:
             subprocess.run(['pyenv', 'install', version, '--verbose'],
                             stdout=file, text=True)
-
-    def get_avalible_versions(self):
-        '''Returns a list of CPython avalible versions to install'''
-        ps = subprocess.run('pyenv install --list',
-                            capture_output=True, shell=True)
-
-        output = ps.stdout.decode()
-
-        return helpers.parse_output(output)
-
 
     def get_global_version(self):
         with open(f'{self.root_dir}/version', 'r') as file:
