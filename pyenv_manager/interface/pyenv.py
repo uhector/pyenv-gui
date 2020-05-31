@@ -28,6 +28,18 @@ class PyenvInterface:
         else:
             return None
 
+    @property
+    def installed_versions(self):
+        ps = subprocess.Popen(['ls', '-l',
+                              self.versions_dir],
+                              stdout=subprocess.PIPE)
+
+        output = subprocess.check_output(['grep', '^d'],
+                                         stdin=ps.stdout,
+                                         text=True)
+
+        return ['system'] + helpers.parse_ls_output(output)
+
     @classmethod
     def switch_state(cls):
         if cls.state:
@@ -50,16 +62,6 @@ class PyenvInterface:
 
         return helpers.parse_output(output)
 
-    def get_installed_versions(self):
-        ps = subprocess.Popen(['ls', '-l',
-                              self.versions_dir],
-                              stdout=subprocess.PIPE)
-
-        output = subprocess.check_output(['grep', '^d'],
-                                      stdin=ps.stdout,
-                                      text=True)
-
-        return ['system'] + helpers.parse_ls_output(output)
 
     def get_global_version(self):
         with open(f'{self.root_dir}/version', 'r') as file:

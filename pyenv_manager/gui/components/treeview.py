@@ -18,7 +18,7 @@ class Treeview(ttk.Treeview):
             for child in children:
                 self.delete(child)
 
-        for version in pyenv_interface.get_installed_versions():
+        for version in pyenv_interface.installed_versions:
             if version == pyenv_interface.get_global_version():
                 version += '*'
             self.insert('', 0, text=version)
