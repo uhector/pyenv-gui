@@ -28,7 +28,7 @@ class VersionManagementFrame(ttk.Frame):
     def _set_as_global(self):
         tree = self.treeview
         selected_version = tree.item(tree.selection())['text']
-        if pyenv_interface.get_global_version() == selected_version[:-1]:
+        if pyenv_interface.global_version == selected_version[:-1]:
             pass
         else:
             if selected_version == 'system':

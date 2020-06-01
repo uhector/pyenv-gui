@@ -49,6 +49,18 @@ class PyenvInterface:
 
         return helpers.parse_output(output)
 
+    @property
+    def global_version(self):
+        with open(f'{self.root_dir}/version', 'r') as file:
+            lines = []
+            for line in file:
+                lines.append(line)
+
+        if len(lines) != 0:
+            return lines[0]
+        else:
+            return 'system'
+
     @classmethod
     def switch_state(cls):
         if cls.state:
@@ -61,17 +73,6 @@ class PyenvInterface:
         with open('logs.txt', 'w') as file:
             subprocess.run(['pyenv', 'install', version, '--verbose'],
                             stdout=file, text=True)
-
-    def get_global_version(self):
-        with open(f'{self.root_dir}/version', 'r') as file:
-            lines = []
-            for line in file:
-                lines.append(line)
-
-        if len(lines) != 0:
-            return lines[0]
-        else:
-            return 'system'
 
     def set_global_version(self, version):
         with open(f'{self.root_dir}/version', 'w') as file:
