@@ -11,7 +11,7 @@ class PyenvInterface:
 
     def __init__(self):
         self._root_dir = self._get_root_dir()
-        self.versions_dir = os.path.join(self._root_dir, 'versions')
+        self._versions_dir = os.path.join(self._root_dir, 'versions')
 
     def __new__(cls):
         '''Check if pyenv is installed
@@ -31,7 +31,7 @@ class PyenvInterface:
     @property
     def installed_versions(self):
         ps = subprocess.Popen(['ls', '-l',
-                              self.versions_dir],
+                              self._versions_dir],
                               stdout=subprocess.PIPE)
 
         output = subprocess.check_output(['grep', '^d'],
