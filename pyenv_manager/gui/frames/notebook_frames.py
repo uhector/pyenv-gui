@@ -32,7 +32,7 @@ class VersionManagementFrame(ttk.Frame):
             pass
         else:
             if selected_version == 'system':
-                pyenv_interface.set_global_version('')
+                pyenv_interface.global_version = ''
             else:
-                pyenv_interface.set_global_version(selected_version)
+                pyenv_interface.global_version = selected_version
         tree.update()
