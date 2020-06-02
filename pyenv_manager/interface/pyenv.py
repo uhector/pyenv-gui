@@ -10,8 +10,8 @@ class PyenvInterface:
     state = False
 
     def __init__(self):
-        self.root_dir = self._get_root_dir()
-        self.versions_dir = os.path.join(self.root_dir, 'versions')
+        self._root_dir = self._get_root_dir()
+        self.versions_dir = os.path.join(self._root_dir, 'versions')
 
     def __new__(cls):
         '''Check if pyenv is installed
@@ -51,7 +51,7 @@ class PyenvInterface:
 
     @property
     def global_version(self):
-        with open(f'{self.root_dir}/version', 'r') as file:
+        with open(f'{self._root_dir}/version', 'r') as file:
             lines = []
             for line in file:
                 lines.append(line)
@@ -63,7 +63,7 @@ class PyenvInterface:
 
     @global_version.setter
     def global_version(self, version):
-        with open(f'{self.root_dir}/version', 'w') as file:
+        with open(f'{self._root_dir}/version', 'w') as file:
             file.write(version)
 
     @classmethod
