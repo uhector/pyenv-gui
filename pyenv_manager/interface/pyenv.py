@@ -70,18 +70,18 @@ class PyenvInterface:
         subprocess.run(['pyenv', 'uninstall', '--force', version],
                        capture_output=True)
 
+    def install(self, version):
+        '''This method only should be called in a different thread'''
+        with open('logs.txt', 'w') as file:
+            subprocess.run(['pyenv', 'install', version, '--verbose'],
+                            stdout=file, text=True)
+
     @classmethod
     def switch_state(cls):
         if cls.state:
             cls.state = False
         else:
             cls.state = True
-
-    def install_version(self, version):
-        '''This method only should be called in a different thread'''
-        with open('logs.txt', 'w') as file:
-            subprocess.run(['pyenv', 'install', version, '--verbose'],
-                            stdout=file, text=True)
 
     def _get_root_dir(self):
         root_dir = subprocess.run('pyenv root',

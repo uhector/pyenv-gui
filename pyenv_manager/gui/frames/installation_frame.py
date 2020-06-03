@@ -36,7 +36,7 @@ class InstallationFrame(ttk.Frame):
         selected_version = self.versions_combo.get()
         
         installation = threading.Thread(
-            target=pyenv_interface.install_version,
+            target=pyenv_interface.install,
             args=(selected_version,)
         )
 
