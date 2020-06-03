@@ -25,7 +25,7 @@ class VersionManagementFrame(ttk.Frame):
                                                 row=1,
                                                 sticky="nsew")
         
-        ttk.Button(self, text='Install version',
+        ttk.Button(self, text='Install a new version',
                    command=InstallationWindow).grid(column=0,
                                                     row=2,
                                                     columnspan=2,
