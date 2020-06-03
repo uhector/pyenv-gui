@@ -66,6 +66,10 @@ class PyenvInterface:
         with open(f'{self._root_dir}/version', 'w') as file:
             file.write(version)
 
+    def uninstall(self, version):
+        subprocess.run(['pyenv', 'uninstall', '--force', version],
+                       capture_output=True)
+
     @classmethod
     def switch_state(cls):
         if cls.state:
