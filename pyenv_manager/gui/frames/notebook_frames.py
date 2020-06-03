@@ -21,9 +21,10 @@ class VersionManagementFrame(ttk.Frame):
                                                      row=1,
                                                      sticky="nsew")
 
-        ttk.Button(self, text='Uninstall').grid(column=1,
-                                                row=1,
-                                                sticky="nsew")
+        ttk.Button(self, text='Uninstall',
+                   command=self._uninstall).grid(column=1,
+                                                 row=1,
+                                                 sticky="nsew")
         
         ttk.Button(self, text='Install a new version',
                    command=InstallationWindow).grid(column=0,
@@ -43,4 +44,13 @@ class VersionManagementFrame(ttk.Frame):
                 pyenv_interface.global_version = ''
             else:
                 pyenv_interface.global_version = selected_version
+        tree.update()
+
+    def _uninstall(self):
+        tree = self.treeview
+        selected_version = tree.item(tree.selection())['text']
+        if not selected_version:
+            pass
+        else:
+            pyenv_interface.uninstall(selected_version)
         tree.update()
