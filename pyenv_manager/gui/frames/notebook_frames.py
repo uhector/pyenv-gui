@@ -17,15 +17,21 @@ class VersionManagementFrame(ttk.Frame):
         self.treeview.update()
 
         ttk.Button(self, text='Set as global',
-                   command=self._set_as_global).grid(column=0, row=1)
+                   command=self._set_as_global).grid(column=0,
+                                                     row=1,
+                                                     sticky="nsew")
 
+        ttk.Button(self, text='Uninstall').grid(column=1,
+                                                row=1,
+                                                sticky="nsew")
+        
         ttk.Button(self, text='Install version',
-                   command=InstallationWindow).grid(column=1, row=1)
-
-        ttk.Button(self, text='Uninstall').grid(column=0, row=3)
+                   command=InstallationWindow).grid(column=0,
+                                                    row=2,
+                                                    columnspan=2,
+                                                    sticky="nsew")
 
         self.pack()
-
 
     def _set_as_global(self):
         tree = self.treeview
