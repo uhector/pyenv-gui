@@ -22,6 +22,8 @@ class VersionManagementFrame(ttk.Frame):
         ttk.Button(self, text='Install version',
                    command=InstallationWindow).grid(column=1, row=1)
 
+        ttk.Button(self, text='Uninstall').grid(column=0, row=3)
+
         self.pack()
 
 
