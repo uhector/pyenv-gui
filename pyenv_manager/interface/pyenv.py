@@ -57,7 +57,7 @@ class PyenvInterface:
                 lines.append(line)
 
         if len(lines) != 0:
-            return lines[0]
+            return lines[0].replace('\n', '')
         else:
             return 'system'
 
