@@ -11,12 +11,15 @@ class Treeview(ttk.Treeview):
 
         self.heading('#0', text='Installed versions')
 
-
-    def update(self):
+    def clean(self):
         children = self.get_children()
+
         if children:
             for child in children:
                 self.delete(child)
+
+    def update(self):
+        self.clean()
 
         for version in pyenv_interface.installed_versions:
             if version == pyenv_interface.global_version:
