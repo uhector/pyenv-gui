@@ -66,15 +66,15 @@ class PyenvInterface:
         with open(f'{self._root_dir}/version', 'w') as file:
             file.write(version)
 
+    def install(self, version):
+        return subprocess.Popen(
+                   ["pyenv", "install", version, "--verbose"],
+                   stdout=subprocess.PIPE
+               )
+
     def uninstall(self, version):
         subprocess.run(['pyenv', 'uninstall', '--force', version],
                        capture_output=True)
-
-    def install(self, version):
-        '''This method only should be called in a different thread'''
-        with open('logs.txt', 'w') as file:
-            subprocess.run(['pyenv', 'install', version, '--verbose'],
-                            stdout=file, text=True)
 
     @classmethod
     def switch_state(cls):
