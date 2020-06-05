@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-import threading
+from threading import Thread
 
 from .. import pyenv_interface
 from ..components.combobox import Combobox
@@ -18,14 +18,17 @@ class InstallationFrame(ttk.Frame):
 
         self.versions_combo = Combobox(self, state="readonly")
 
-        ttk.Button(
+        self.install_button = ttk.Button(
             self,
             text='Install',
-            command=self.start_installation
-        ).pack()
+            command=lambda: Thread(
+                target=self.start_installation
+            ).start()
+        )
+
+        self.install_button.pack()
 
         self.terminal_output = tk.Text(self, height=10, width=50)
-        
         self.terminal_output.pack()
 
         self.pack()
@@ -33,16 +36,15 @@ class InstallationFrame(ttk.Frame):
 
     def start_installation(self):
         selected_version = self.versions_combo.get()
-        
-        installation = threading.Thread(
-            target=pyenv_interface.install,
-            args=(selected_version,)
-        )
 
-        update_text_widget = threading.Thread(
-            target=self.terminal_output.insert_from_file,
-            args=('logs.txt', pyenv_interface)
-        )
+        if selected_version:
+            self.install_button.config(state='disable')
 
-        installation.start()
-        update_text_widget.start()
+            ps = pyenv_interface.install(selected_version)
+
+            while not ps.poll():
+                output = ps.stdout.readline().decode()
+                self.terminal_output.insert(tk.END, output)
+                self.terminal_output.see(tk.END)
+
+        self.install_button.config(state='normal')
