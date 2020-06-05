@@ -24,8 +24,7 @@ class InstallationFrame(ttk.Frame):
             command=self.start_installation
         ).pack()
 
-        self.terminal_output = Text(self, height=10, width=50,
-                                   state='disable')
+        self.terminal_output = tk.Text(self, height=10, width=50)
         
         self.terminal_output.pack()
 
