@@ -32,7 +32,6 @@ class InstallationFrame(ttk.Frame):
 
         self.pack()
 
-
     def start_installation(self):
         selected_version = self.versions_combo.get()
 
@@ -41,9 +40,10 @@ class InstallationFrame(ttk.Frame):
 
             ps = pyenv_interface.install(selected_version)
 
-            while not ps.poll():
+            while ps.poll() == None:
                 output = ps.stdout.readline().decode()
-                self.terminal_output.insert(tk.END, output)
-                self.terminal_output.see(tk.END)
+                if output:
+                    self.terminal_output.insert(tk.END, output)
+                    self.terminal_output.see(tk.END)
 
         self.install_button.config(state='normal')
