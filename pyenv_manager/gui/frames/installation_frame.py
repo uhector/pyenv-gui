@@ -7,7 +7,6 @@ from threading import Thread
 
 from .. import pyenv_interface
 from ..components.combobox import Combobox
-from ..components.text import Text
 
 class InstallationFrame(ttk.Frame):
 
